@@ -54,8 +54,6 @@ DEFS					=
 
 
 LXCDIR					?= /var/lib/lxc
-firewalldir				= $(sysconfdir)/firewall.d
-firewallglobaldir			= $(firewalldir)/global.d
 slackrcddir				= $(sysconfdir)/rc.d
 bashprofiledir				= $(sysconfdir)/profile.d
 slackinstdir				= /install
@@ -81,7 +79,6 @@ sbin_SCRIPTS				= src/misc/cronmail.sh
 # lists
 AM_INSTALLCHECK_STD_OPTIONS_EXEMPT	= src/bash/bindle.sh \
 					  src/slack/mkinitrd-all.sh \
-					  src/slack/rc.firewall \
 					  src/slack/rc.inet1_local
 BUILT_SOURCES				=
 TESTS					=
@@ -95,15 +92,6 @@ EXTRA_DIST				= src/bash/bindle.sh \
 					  src/misc/pub-generate-readme.sh.in \
 					  src/misc/pub-rsync-remotes.sh.in \
 					  src/slack/mkinitrd-all.sh.in \
-					  src/slack/rc.firewall.in \
-					  src/slack/firewall.d/global.d/rules-example \
-					  src/slack/firewall.d/global.d/rules4-example \
-					  src/slack/firewall.d/global.d/rules6-example \
-					  src/slack/firewall.d/global.d/ipsets-example \
-					  src/slack/firewall.d/ipsets-example \
-					  src/slack/firewall.d/rules-example \
-					  src/slack/firewall.d/rules4-example \
-					  src/slack/firewall.d/rules6-example \
 					  src/slack/rc.inet1_local.in \
 					  src/slack/rc.d/rc.inet1.conf \
 					  src/slack/rc.d/rc.inet1_local_down-example \
@@ -127,7 +115,6 @@ CLEANFILES				= \
 					  src/misc/git-proj-stats.sh \
 					  src/misc/pub-generate-readme.sh \
 					  src/misc/pub-rsync-remotes.sh \
-					  src/slack/rc.firewall \
 					  src/slack/rc.inet1_local \
 					  src/slack/slack-net-check.sh \
 					  src/slack/slack-pkg-audit.sh \
@@ -144,16 +131,7 @@ if ENABLE_SLACKWARE
 sbin_SCRIPTS				+= src/slack/mkinitrd-all.sh \
 					   src/slack/slack-net-check.sh \
 					   src/slack/slack-pkg-audit.sh
-slackrcd_SCRIPTS			=  src/slack/rc.firewall \
-					   src/slack/rc.inet1_local
-firewallglobal_DATA			=  src/slack/firewall.d/global.d/rules-example \
-					   src/slack/firewall.d/global.d/rules4-example \
-					   src/slack/firewall.d/global.d/rules6-example \
-					   src/slack/firewall.d/global.d/ipsets-example
-firewall_DATA				=  src/slack/firewall.d/ipsets-example \
-					   src/slack/firewall.d/rules-example \
-					   src/slack/firewall.d/rules4-example \
-					   src/slack/firewall.d/rules6-example
+slackrcd_SCRIPTS			=  src/slack/rc.inet1_local
 slackrcd_DATA				=  src/slack/rc.d/rc.inet1.conf \
 					   src/slack/rc.d/rc.inet1_local_down-example \
 					   src/slack/rc.d/rc.inet1_local_up-example
@@ -196,9 +174,6 @@ src/misc/pub-rsync-remotes.sh: Makefile src/misc/pub-rsync-remotes.sh.in
 	@$(do_subst_fn)
 
 src/slack/mkinitrd-all.sh: Makefile src/slack/mkinitrd-all.sh.in
-	@$(do_subst_fn)
-
-src/slack/rc.firewall: Makefile src/slack/rc.firewall.in
 	@$(do_subst_fn)
 
 src/slack/rc.inet1_local: Makefile src/slack/rc.inet1_local.in
