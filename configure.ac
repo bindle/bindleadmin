@@ -36,11 +36,11 @@
 
 AC_PREREQ([2.65])
 
-AC_COPYRIGHT([Copyright (c) 2015, 2017, 2018 Bindle Binaries <syzdek@bindlebinaries.com>.])
+AC_COPYRIGHT([Copyright (c) 2015, 2017, 2018, 2019 Bindle Binaries <syzdek@bindlebinaries.com>.])
 AC_REVISION(0.1)
-AC_INIT([Bindle Binaries Admin Tools],[0.17],[syzdek@bindlebinaries.com],[bindleadmin])
+AC_INIT([Bindle Binaries Admin Tools],[0.18],[syzdek@bindlebinaries.com],[bindleadmin])
 
-AC_SUBST([RELEASE_MONTH],["August 2018"])
+AC_SUBST([RELEASE_MONTH],["March 2019"])
 
 # directory locations
 AC_CONFIG_AUX_DIR([build-aux])
